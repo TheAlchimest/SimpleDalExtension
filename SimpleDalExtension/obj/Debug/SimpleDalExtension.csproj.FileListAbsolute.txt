@@ -21,3 +21,16 @@ E:\Repos\Shaseh\SimpleDalExtension\obj\Debug\SimpleDalExtension.csproj.CoreCompi
 E:\Repos\Shaseh\SimpleDalExtension\obj\Debug\SimpleDalExtension.csproj.CopyComplete
 E:\Repos\Shaseh\SimpleDalExtension\obj\Debug\SimpleDalExtension.dll
 E:\Repos\Shaseh\SimpleDalExtension\obj\Debug\SimpleDalExtension.pdb
+E:\Repos\Shaseh\SimpleDalExtension\obj\Debug\SimpleDalExtension.csprojAssemblyReference.cache
+E:\Repos\SimpleDataAccess\SimpleDalExtension\bin\Debug\SimpleDalExtension.dll.config
+E:\Repos\SimpleDataAccess\SimpleDalExtension\bin\Debug\SimpleDalExtension.dll
+E:\Repos\SimpleDataAccess\SimpleDalExtension\bin\Debug\SimpleDalExtension.pdb
+E:\Repos\SimpleDataAccess\SimpleDalExtension\obj\Debug\SimpleDalExtension.csprojAssemblyReference.cache
+E:\Repos\SimpleDataAccess\SimpleDalExtension\obj\Debug\SimpleDalExtension.csproj.CoreCompileInputs.cache
+E:\Repos\SimpleDataAccess\SimpleDalExtension\obj\Debug\SimpleDalExtension.csproj.CopyComplete
+E:\Repos\SimpleDataAccess\SimpleDalExtension\obj\Debug\SimpleDalExtension.dll
+E:\Repos\SimpleDataAccess\SimpleDalExtension\obj\Debug\SimpleDalExtension.pdb
+E:\Repos\SimpleDataAccess\SimpleDalExtension\bin\Debug\EntityFramework.dll
+E:\Repos\SimpleDataAccess\SimpleDalExtension\bin\Debug\EntityFramework.SqlServer.dll
+E:\Repos\SimpleDataAccess\SimpleDalExtension\bin\Debug\EntityFramework.xml
+E:\Repos\SimpleDataAccess\SimpleDalExtension\bin\Debug\EntityFramework.SqlServer.xml

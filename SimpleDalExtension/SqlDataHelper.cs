@@ -13,13 +13,10 @@ using System.Reflection;
 namespace SimpleDalExtension
 {
   
-    public class SqlDataHelper
+    public static class SqlDataHelper
     {
-
-
-
         #region GetColumnsName
-        public StringDictionary GetColumnsSchema(IDataReader reader)
+        public static StringDictionary GetColumnsSchema(IDataReader reader)
         {
             StringDictionary columnsNames = new StringDictionary();
             DataTable dt = reader.GetSchemaTable();
@@ -34,7 +31,7 @@ namespace SimpleDalExtension
         #endregion
 
         #region --------------GetSqlConnection--------------
-        public SqlConnection GetSqlConnection()
+        public static SqlConnection GetSqlConnection()
         {
             //return new SqlConnection(ConfigurationManager.ConnectionStrings["Connectionstring"].ToString());
             return new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
@@ -53,13 +50,13 @@ namespace SimpleDalExtension
         /// <param name="reader">data reader </param>
         /// <param name="t">type of object we need to convert to</param>
         /// <returns></returns>
-        public T GetEntity<T>(IDataReader reader)
+        public static T GetEntity<T>(IDataReader reader)
         {
             Type t = typeof(T);
             return (T)GetEntity(reader, t);
         }
         //---------------------------------------------------------------------
-        public object GetEntity(IDataReader reader, Type t)
+        public static object GetEntity(IDataReader reader, Type t)
         {
 
             object obj = Activator.CreateInstance(t);
@@ -116,7 +113,7 @@ namespace SimpleDalExtension
             return obj;
         }
 
-        private object GetDynamic(IDataReader reader)
+        private static object GetDynamic(IDataReader reader)
         {
             return null;
         }
@@ -124,15 +121,15 @@ namespace SimpleDalExtension
 
         #region --------------ExecuteStoredProcedure--------------
 
-        public int ExecuteStoredProcedure(string procedureName, CustomDbParameterList customParameters)
+        public static int ExecuteStoredProcedure(string procedureName, CustomDbParameterList customParameters)
         {
             return ExecuteStoredProcedure(procedureName, customParameters.Parameters);
         }
 
-        public int ExecuteStoredProcedure(string procedureName, List<SqlParameter> parameters)
+        public static int ExecuteStoredProcedure(string procedureName, List<SqlParameter> parameters)
         {
             int resultCount = 0;
-            using (SqlConnection myConnection = this.GetSqlConnection())
+            using (SqlConnection myConnection = GetSqlConnection())
             {
 
                 SqlCommand myCommand = new SqlCommand(procedureName, myConnection);
@@ -156,15 +153,15 @@ namespace SimpleDalExtension
 
         #region --------------ExecuteScalarStoredProcedure--------------
 
-        public object ExecuteScalarStoredProcedure(string procedureName, CustomDbParameterList customParameters)
+        public static object ExecuteScalarStoredProcedure(string procedureName, CustomDbParameterList customParameters)
         {
             return ExecuteScalarStoredProcedure(procedureName, customParameters.Parameters);
         }
 
-        public object ExecuteScalarStoredProcedure(string procedureName, List<SqlParameter> parameters)
+        public static object ExecuteScalarStoredProcedure(string procedureName, List<SqlParameter> parameters)
         {
             object result = 0;
-            using (SqlConnection myConnection = this.GetSqlConnection())
+            using (SqlConnection myConnection = GetSqlConnection())
             {
 
                 SqlCommand myCommand = new SqlCommand(procedureName, myConnection);
@@ -188,12 +185,12 @@ namespace SimpleDalExtension
 
 
         #region --------------RetrieveEntitySingleOrDefault--------------
-        public T RetrieveEntitySingleOrDefault<T>(string procedureName, CustomDbParameterList customParameters)
+        public static T RetrieveEntitySingleOrDefault<T>(string procedureName, CustomDbParameterList customParameters)
         {
             return RetrieveEntitySingleOrDefault<T>(procedureName, customParameters.Parameters);
         }
 
-        public T RetrieveEntitySingleOrDefault<T>(string procedureName, List<SqlParameter> parameters)
+        public static T RetrieveEntitySingleOrDefault<T>(string procedureName, List<SqlParameter> parameters)
         {
             Type t = typeof(T);
             List<T> list = RetrieveEntityList<T>(procedureName, parameters);
@@ -209,18 +206,18 @@ namespace SimpleDalExtension
         #endregion
 
         #region --------------RetrieveMultiRecordSet--------------
-        public Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, CustomDbParameterList customParameters, params Type[] types)
+        public static Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, CustomDbParameterList customParameters, params Type[] types)
         {
             return RetrieveMultiRecordSet(procedureName, customParameters.Parameters, types);
         }
 
-        public Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, List<SqlParameter> parameters, params Type[] types)
+        public static Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, List<SqlParameter> parameters, params Type[] types)
         {
             var recordSetDefinitions = GenerateRecordSetDefinition(types);
             return RetrieveMultiRecordSet(procedureName, parameters, recordSetDefinitions);
 
         }
-        public Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, List<SqlParameter> parameters, Type[] types, List<string> names)
+        public static Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, List<SqlParameter> parameters, Type[] types, List<string> names)
         {
             var rsDefinitionManager = new RecordSetDefinitionManager();
             var recordSetDefinitions = rsDefinitionManager.GenerateRecordSetDefinition(types, names);
@@ -228,10 +225,10 @@ namespace SimpleDalExtension
         }
         #region oldCode of RetrieveMultiRecordSet
         /*
-        public Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, List<SqlParameter> parameters, List<Type> types)
+        public static Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, List<SqlParameter> parameters, List<Type> types)
         {
             Dictionary<string, object> resultSet = new Dictionary<string, object>();
-            using (SqlConnection myConnection = this.GetSqlConnection())
+            using (SqlConnection myConnection = GetSqlConnection())
             {
 
                 SqlCommand myCommand = new SqlCommand(procedureName, myConnection);
@@ -260,7 +257,7 @@ namespace SimpleDalExtension
 
                     while (dr.Read())
                     {
-                        var item = this.GetEntity(dr,t);
+                        var item = GetEntity(dr,t);
                         if (item != null)
                         {
                             itemsList.Add(item);
@@ -279,10 +276,10 @@ namespace SimpleDalExtension
         */
         #endregion
 
-        public Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, List<SqlParameter> parameters, List<RecordSetDefinition> tepesDefinition)
+        public static Dictionary<string, object> RetrieveMultiRecordSet(string procedureName, List<SqlParameter> parameters, List<RecordSetDefinition> tepesDefinition)
         {
             Dictionary<string, object> resultSet = new Dictionary<string, object>();
-            using (SqlConnection myConnection = this.GetSqlConnection())
+            using (SqlConnection myConnection = GetSqlConnection())
             {
 
                 SqlCommand myCommand = new SqlCommand(procedureName, myConnection);
@@ -324,15 +321,15 @@ namespace SimpleDalExtension
 
         #endregion
         #region ----------------------------
-        /* public int ExecuteStoredProcedure(string procedureName, CustomDbParameterList customParameters, SqlTransaction transaction = null)
+        /* public static int ExecuteStoredProcedure(string procedureName, CustomDbParameterList customParameters, SqlTransaction transaction = null)
          {
              return ExecuteStoredProcedure(procedureName, customParameters.Parameters);
          }*/
 
-        public void ExecuteForMultiItems<T>(string procedureName, List<SqlParameter> parameters, List<T> items)
+        public static void ExecuteForMultiItems<T>(string procedureName, List<SqlParameter> parameters, List<T> items)
         {
 
-            using (SqlConnection myConnection = this.GetSqlConnection())
+            using (SqlConnection myConnection = GetSqlConnection())
             {
 
                 SqlCommand myCommand = new SqlCommand(procedureName, myConnection);
@@ -367,15 +364,15 @@ namespace SimpleDalExtension
         #endregion
 
         #region --------------RetrieveEntityList--------------
-        public List<T> RetrieveEntityList<T>(string procedureName, CustomDbParameterList customParameters)
+        public static List<T> RetrieveEntityList<T>(string procedureName, CustomDbParameterList customParameters)
         {
             return RetrieveEntityList<T>(procedureName, customParameters.Parameters);
         }
 
-        public List<T> RetrieveEntityList<T>(string procedureName, List<SqlParameter> parameters)
+        public static List<T> RetrieveEntityList<T>(string procedureName, List<SqlParameter> parameters)
         {
             List<T> itemsList = new List<T>();
-            using (SqlConnection myConnection = this.GetSqlConnection())
+            using (SqlConnection myConnection = GetSqlConnection())
             {
 
                 SqlCommand myCommand = new SqlCommand(procedureName, myConnection);
@@ -392,7 +389,7 @@ namespace SimpleDalExtension
                 dr = myCommand.ExecuteReader();
                 while (dr.Read())
                 {
-                    var item = this.GetEntity<T>(dr);
+                    var item = GetEntity<T>(dr);
                     if (item != null)
                     {
                         itemsList.Add(item);
@@ -407,20 +404,20 @@ namespace SimpleDalExtension
         #endregion
 
 
-        private List<RecordSetDefinition> GenerateRecordSetDefinition(Type[] types)
+        private static List<RecordSetDefinition> GenerateRecordSetDefinition(Type[] types)
         {
             var rsDefinitionManager = new RecordSetDefinitionManager();
             return rsDefinitionManager.GenerateRecordSetDefinition(types, null);
 
         }
 
-        private IList GetListOfDataFromDataReader(IDataReader dr, RecordSetDefinition t)
+        private static IList GetListOfDataFromDataReader(IDataReader dr, RecordSetDefinition t)
         {
 
             var itemsList = (IList)Activator.CreateInstance(t.Type);
             while (dr.Read())
             {
-                var item = this.GetEntity(dr, t.GenericObjectType);
+                var item = GetEntity(dr, t.GenericObjectType);
                 if (item != null)
                 {
                     itemsList.Add(item);
@@ -429,91 +426,19 @@ namespace SimpleDalExtension
             return itemsList;
         }
 
-        private object GetSingleobjectFromDataReader(IDataReader dr, RecordSetDefinition t)
+        private static object GetSingleobjectFromDataReader(IDataReader dr, RecordSetDefinition t)
         {
             object item = null;
             while (dr.Read())
             {
-                item = this.GetEntity(dr, t.Type);
+                item = GetEntity(dr, t.Type);
                 break;
             }
             return item;
 
         }
 
-        public bool Createko(Type myType, object obj, string tableName)
-        {
-            //Type myType = typeof(t);
-            PropertyInfo[] piT = myType.GetProperties();
-            object PropValue;
-            DCAttributes[] dcattr;
-            DCNonInsertable[] dcNonInsertable;
-            //object defaultValue;
-            /*string strQry =
-                    " Count(*) FROM Users WHERE UserName=@username " +
-                    "AND Password=@password";*/
 
-            using (SqlConnection myConnection = this.GetSqlConnection())
-            {
-                string columns = "";
-                string parameters = "";
-                SqlParameter prm;
-
-                SqlCommand myCommand = new SqlCommand("", myConnection);
-                myCommand.CommandType = CommandType.Text;
-                // Set the parameters
-                myCommand.Parameters.Add("@DCID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
-                foreach (PropertyInfo myPropInfo in piT)
-                {
-                    if (myPropInfo.CanWrite)
-                    {
-                        PropValue = myPropInfo.GetValue(obj, null);
-                        dcattr = (DCAttributes[])myPropInfo.GetCustomAttributes(typeof(DCAttributes), false);
-                        dcNonInsertable = (DCNonInsertable[])myPropInfo.GetCustomAttributes(typeof(DCNonInsertable), false);
-                        if (dcNonInsertable.Length == 0)
-                        {
-                            if (columns.Length > 0)
-                            {
-                                columns += ",";
-                                parameters += ",";
-                            }
-                            columns += "[" + myPropInfo.Name + "]";
-                            parameters += "@" + myPropInfo.Name;
-
-                            if (dcattr.Length > 0)
-                            {
-                                prm = new SqlParameter("@" + myPropInfo.Name, dcattr[0].PropType, dcattr[0].PropLength);
-                                prm.Value = PropValue;
-                            }
-                            else
-                            {
-                                prm = new SqlParameter("@" + myPropInfo.Name, PropValue);
-
-                            }
-                            myCommand.Parameters.Add(prm);
-                        }
-                    }
-                }
-                prm = new SqlParameter();
-                prm.ParameterName = "@DCID";
-                prm.Direction = ParameterDirection.Output;
-                string InsertQuery = "INSERT INTO [" + tableName + "] (" + columns + ")VALUES (" + parameters + ")";
-                InsertQuery += "SET @DCID = @@Identity";
-                myCommand.CommandText = InsertQuery;
-
-                // Execute the command
-                bool status = false;
-                myConnection.Open();
-                if (myCommand.ExecuteNonQuery() > 0)
-                {
-                    status = true;
-                    //Get ID value from database and set it in object
-                    int dcID = (int)myCommand.Parameters["@DCID"].Value;
-                }
-                myConnection.Close();
-                return status;
-            }
-        }
 
 
     }

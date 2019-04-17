@@ -1,0 +1,7 @@
+E:\Repos\SimpleDataAccess\Demo.Model\bin\Debug\Demo.Model.dll.config
+E:\Repos\SimpleDataAccess\Demo.Model\bin\Debug\Demo.Model.dll
+E:\Repos\SimpleDataAccess\Demo.Model\bin\Debug\Demo.Model.pdb
+E:\Repos\SimpleDataAccess\Demo.Model\obj\Debug\Demo.Model.csprojAssemblyReference.cache
+E:\Repos\SimpleDataAccess\Demo.Model\obj\Debug\Demo.Model.csproj.CoreCompileInputs.cache
+E:\Repos\SimpleDataAccess\Demo.Model\obj\Debug\Demo.Model.dll
+E:\Repos\SimpleDataAccess\Demo.Model\obj\Debug\Demo.Model.pdb

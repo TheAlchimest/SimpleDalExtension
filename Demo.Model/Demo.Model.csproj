@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9F5695C4-0691-4A2D-98D1-451641279F65}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Demo.Model</RootNamespace>
+    <AssemblyName>Demo.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DomainClasses\City.cs" />
+    <Compile Include="DomainClasses\Order.cs" />
+    <Compile Include="DomainClasses\OrderAddress.cs" />
+    <Compile Include="DomainClasses\OrderDetails.cs" />
+    <Compile Include="DomainClasses\OrderRequest.cs" />
+    <Compile Include="DomainClasses\OrderRequestAddress.cs" />
+    <Compile Include="DomainClasses\OrderRequestDetails.cs" />
+    <Compile Include="DomainClasses\OrderStatus.cs" />
+    <Compile Include="DomainClasses\PaymentMethod.cs" />
+    <Compile Include="DomainClasses\User.cs" />
+    <Compile Include="DTO\MessageDto.cs" />
+    <Compile Include="DTO\OrderConfirmationForm.cs" />
+    <Compile Include="DTO\OrderFullData.cs" />
+    <Compile Include="DTO\OrderFullDataDto.cs" />
+    <Compile Include="DTO\OrderRequestFullData.cs" />
+    <Compile Include="DTO\OrderRequsetItem.cs" />
+    <Compile Include="DTO\SearchFilter.cs" />
+    <Compile Include="DTO\SearchParameters.cs" />
+    <Compile Include="DTO\SearchProduct.cs" />
+    <Compile Include="DTO\SearchResult.cs" />
+    <Compile Include="DTO\ShoppingCartItem.cs" />
+    <Compile Include="Enums\MessageEnums.cs" />
+    <Compile Include="Enums\OrderStatus.cs" />
+    <Compile Include="Enums\SearchOrderType.cs" />
+    <Compile Include="ObjectMapper.cs" />
+    <Compile Include="PagingModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

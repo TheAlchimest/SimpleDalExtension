@@ -49,15 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomContext.cs" />
     <Compile Include="ParametersReaderExtensionsParameters.cs" />
     <Compile Include="NameReaderExtensions.cs" />
     <Compile Include="TypeParameterCollection.cs" />
     <Compile Include="CustomDbParameterList.cs" />
     <Compile Include="DataProvider.cs" />
-    <Compile Include="DCAttributes.cs" />
-    <Compile Include="DynamicParameters.cs" />
-    <Compile Include="ICustomDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecordSetDefinition.cs" />
     <Compile Include="SqlDataHelper.cs" />
